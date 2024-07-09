@@ -6,8 +6,8 @@ export default function HomePage() {
         
         <div className='h-[200vh]'> 
             <NavBar />
-            <div className='h-[100vh] bg-blue-500'>
-                <h1>Home Page</h1>
+            <div className='px-4 py-5'>
+                <h1 className='font-BubblyReg'>Home Page</h1>
             </div>
         
         </div>

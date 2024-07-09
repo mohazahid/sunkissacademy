@@ -43,8 +43,8 @@ useEffect(() => {
   }, [prevScrollPos]);
 
     return (
-        <nav className={`sticky px-4 py-5 flex justify-start items-center top-0 w-full transition-transform duration-300 ease-in-out ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
-            <button onClick={() => navigate('/')}>Sunkiss Academy</button>
+        <nav className={`font-BubblyBold sticky px-4 py-5 flex justify-start items-center top-0 w-full transition-transform duration-300 ease-in-out ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
+            <button className = {'text-xl'}onClick={() => navigate('/')}>Sunkiss Academy</button>
             <section>
             <div className='lg:hidden' onClick={() => setBurgerOpen((prev) => !prev)}>
           <button className='navbar-burger flex items-center text-black absolute -right-2 transform -translate-y-1/2 -translate-x-1/2'>
@@ -70,16 +70,13 @@ useEffect(() => {
           <ul className='flex flex-col items-center justify-between min-h-[250px]'>
             <li className={` border-gray-400 mb-4 font-primary ${location.pathname === '/home' ? 'text-indigo-600' : 'hover:text-slate-500'
             }`}>
-              <button onClick={() => handleNav('/home')} >Home</button>
+              <button onClick={() => handleNav('/')} >Home</button>
             </li>
             <li className={` border-gray-400 my-4 font-primary ${location.pathname === '/discover' ? 'text-indigo-600' : 'hover:text-slate-500'
             }`}>
-              <button onClick={() => handleNav('/discover')}>Discover</button>
+              <button onClick={() => handleNav('/discover')}>About Us</button>
             </li>
-            <li className={` border-gray-400 my-4 font-primary ${location.pathname === '/create-project' ? 'text-indigo-600' : 'hover:text-slate-500'
-            }`}>
-              <button onClick={() => handleNav('/create-project')}>Create</button>
-            </li>
+           
        
           </ul>
         </div>
@@ -88,9 +85,9 @@ useEffect(() => {
       <ul className='hidden absolute top-1/2 right-1 transform -translate-y-1/2 -translate-x-12 lg:mx-auto lg:flex lg:items-center lg:w-auto max-w-screen-xl z-50'>
         <li>
           <button 
-            className={`flex flex-col items-center font-primary px-4 py-1 ${location.pathname === '/home' ? 'text-indigo-600' : 'hover:text-slate-500'
+            className={`flex flex-col items-center font-primary px-4 py-1 ${location.pathname === '/' ? 'text-indigo-600' : 'hover:text-slate-500'
             }`} 
-            onClick={() => navigate('/home')}>
+            onClick={() => navigate('/')}>
             <svg 
               xmlns='http://www.w3.org/2000/svg' 
               fill='none' viewBox='0 0 24 24' 
@@ -107,63 +104,26 @@ useEffect(() => {
         </li>
         <li>
           <button
-            className={`flex flex-col items-center font-primary px-4 py-1 ${location.pathname === '/discover' ? 'text-indigo-600' : 'hover:text-slate-500'
+            className={`flex flex-col items-center font-primary px-4 py-1 ${location.pathname === '/about' ? 'text-indigo-600' : 'hover:text-slate-500'
             }`}
-            onClick={() => navigate('/discover')}>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none' viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='w-7 h-7'>
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z' />
+            onClick={() => navigate('/about')}>
+            <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke-width="1.5" 
+            stroke="currentColor" 
+            className='w-7 h-7'
+            >
+            <path 
+                stroke-linecap="round" 
+                stroke-linejoin="round" 
+                d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
             </svg>
-            Discover
+            
+            About us
           </button>
         </li>
-        <li>
-          <button
-            className={`flex flex-col items-center font-primary px-4 py-1 ${location.pathname === '/create-project' ? 'text-indigo-600' : 'hover:text-slate-500'
-            }`}
-            onClick={() => navigate('/create-project')}>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none' viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='w-7 h-7'>
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z' />
-            </svg>
-            Create
-          </button>
-        </li>
-        <li>
-          <button
-            className={`flex flex-col items-center font-primary px-4 py-1 ${location.pathname === '/inbox' ? 'text-indigo-600' : 'hover:text-slate-500'
-            }`}
-            onClick={() => navigate('/inbox')}>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none' viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='w-7 h-7'>
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z' />
-            </svg>
-            Inbox
-          </button>
-          
-        </li>
-       
       </ul>
       <style>{`
         .hideMenuNav {

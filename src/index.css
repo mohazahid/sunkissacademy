@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: rgb(236, 253, 0);
+  background-color: rgb(250, 227, 185);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -15,4 +15,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+@font-face {
+  font-family: 'FuzzyBubbles-Bold';
+  src: url(./fonts/FuzzyBubbles-Bold.ttf) format('opentype');
+}
+@font-face {
+  font-family: 'FuzzyBubbles-Regular';
+  src: url(./fonts/FuzzyBubbles-Regular.ttf) format('opentype');
 }
