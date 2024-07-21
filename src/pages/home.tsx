@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from "../components/navBar";
+import Footer from "../components/Footer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination} from "swiper/modules";
 import MomBorder from "../img/MomBorder.png";
@@ -7,16 +8,16 @@ import Reviews from '../components/Reviews'
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css";
-import ContactFrom from "../components/ContactForm";
 import GoogleStars from "../img/GoogleStars.png";
 
 function Review(props: { Name: string; review: string }) {
+  console.log(props);
   return (
-    <div className="flex justify-center p-2 bg-white h-full " style={{ userSelect: "none" }}>
+    <div className="flex justify-center mb-6 p-4 bg-white h-full shadow-lg rounded-lg border" style={{ userSelect: "none" }}>
       <div className="flex flex-col">
         <img src={GoogleStars} alt='' className=" max-h-[10rem] max-w-[15rem] mx-auto" />
         <p className="text-md font-BubblyReg text-yellow-600">{props.review}</p>
-        <p className="text-2xl font-BubblyBold">{props.Name}</p>
+        <p className="text-md font-BubblyBold text-blue-600">-- {props.Name}</p>
       </div>
     </div>
   );
@@ -30,7 +31,7 @@ export default function HomePage() {
   React.useEffect(() => {
     const handleResize = () => {
       setSlidesPerView(
-        window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3
+        window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 2
       );
     };
 
@@ -71,7 +72,7 @@ export default function HomePage() {
           </p>
         </div>
       </div>
-      <div className="w-full h-full mt-[2rem]">
+      <div className="w-full h-full mt-[2rem] px-[20px] max-w-[80rem] mx-auto">
         <Swiper
           slidesPerView={slidesPerView}
           spaceBetween={50}
@@ -79,19 +80,16 @@ export default function HomePage() {
             clickable: true,
           }}
           modules={[Pagination]}
-          className="w-full bg-white"
+          className="w-full bg-white mx-auto"
         >
           {Reviews.map((review :any) => (
             <SwiperSlide key={review.id}>
-              <Review Name={review.Name} review={review.review} />
+              <Review Name={review.name} review={review.review} />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-      <div className="swiper-pagination"></div>
-      <div className="w-full mt-[2rem]">
-        <ContactFrom />
-      </div>
+      <Footer/>
     </div>
   );
 }
