@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/20/solid'
 import { useNavigate, useLocation } from 'react-router-dom'
-
+import MomBorder from '../img/MomBorder.png'
 export default function NavBar () {
     // const [BurgerOpen, setBurgerOpen] = useState(false)
 
@@ -43,8 +43,8 @@ useEffect(() => {
   }, [prevScrollPos]);
 
     return (
-        <nav className={`font-BubblyBold sticky px-4 py-5 flex justify-start items-center top-0 w-full transition-transform duration-300 ease-in-out ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
-            <button className = {'text-xl'}onClick={() => navigate('/')}>Sunkiss Academy</button>
+        <nav style={{ userSelect: "none" }} className={`bg-[#9cdee7] font-BubblyBold sticky px-4 py-5 flex justify-start items-center top-0 w-full transition-transform duration-300 ease-in-out ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
+            <button className = {'text-2xl'}onClick={() => navigate('/')}>Sunkiss Academy</button>
             <section>
             <div className='lg:hidden' onClick={() => setBurgerOpen((prev) => !prev)}>
           <button className='navbar-burger flex items-center text-black absolute -right-2 transform -translate-y-1/2 -translate-x-1/2'>
@@ -72,9 +72,9 @@ useEffect(() => {
             }`}>
               <button onClick={() => handleNav('/')} >Home</button>
             </li>
-            <li className={` border-gray-400 my-4 font-primary ${location.pathname === '/discover' ? 'text-indigo-600' : 'hover:text-slate-500'
+            <li className={` border-gray-400 my-4 font-primary ${location.pathname === '/about' ? 'text-indigo-600' : 'hover:text-slate-500'
             }`}>
-              <button onClick={() => handleNav('/discover')}>About Us</button>
+              <button onClick={() => handleNav('/about')}>About Us</button>
             </li>
            
        
@@ -145,6 +145,5 @@ useEffect(() => {
         }
       `}</style>
         </nav>
-    
-    );
+        );
 }
