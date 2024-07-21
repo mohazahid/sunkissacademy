@@ -54,7 +54,7 @@ export default function HomePage() {
         </div>
       </div>
       <div className="flex flex-col justify-center items-center bg-[#9cdee7] py-10 mt-[2rem]">
-        <div className="flex flex-col text-center w-[70%] gap-2 max-w-[60rem]">
+        <div className="flex flex-col text-center w-[70%] gap-2 max-w-[60rem] ">
           <h2 className="font-BubblyBold text-5xl">About Us </h2>
           <p className="text-2xl font-BubblyReg">
             Welcome to our In-Home Childcare in Lynnwood! We are dedicated to
