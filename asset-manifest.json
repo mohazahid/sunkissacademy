@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/sunkissacademy/static/css/main.3badc625.css",
+    "main.js": "/sunkissacademy/static/js/main.7dbed01f.js",
+    "static/js/453.faf198cd.chunk.js": "/sunkissacademy/static/js/453.faf198cd.chunk.js",
+    "static/media/FuzzyBubbles-Regular.ttf": "/sunkissacademy/static/media/FuzzyBubbles-Regular.2cbdb4122a6430864d6c.ttf",
+    "static/media/FuzzyBubbles-Bold.ttf": "/sunkissacademy/static/media/FuzzyBubbles-Bold.d8fe6e610255fa56e01d.ttf",
+    "static/media/GoogleStars.png": "/sunkissacademy/static/media/GoogleStars.85474fab6c76a04d44ba.png",
+    "index.html": "/sunkissacademy/index.html",
+    "main.3badc625.css.map": "/sunkissacademy/static/css/main.3badc625.css.map",
+    "main.7dbed01f.js.map": "/sunkissacademy/static/js/main.7dbed01f.js.map",
+    "453.faf198cd.chunk.js.map": "/sunkissacademy/static/js/453.faf198cd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3badc625.css",
+    "static/js/main.7dbed01f.js"
+  ]
+}
