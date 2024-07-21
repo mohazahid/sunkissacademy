@@ -1,18 +1,20 @@
 {
   "files": {
-    "main.css": "/sunkissacademy/static/css/main.3badc625.css",
-    "main.js": "/sunkissacademy/static/js/main.7dbed01f.js",
+    "main.css": "/sunkissacademy/static/css/main.80ae5977.css",
+    "main.js": "/sunkissacademy/static/js/main.5d670033.js",
     "static/js/453.faf198cd.chunk.js": "/sunkissacademy/static/js/453.faf198cd.chunk.js",
     "static/media/FuzzyBubbles-Regular.ttf": "/sunkissacademy/static/media/FuzzyBubbles-Regular.2cbdb4122a6430864d6c.ttf",
     "static/media/FuzzyBubbles-Bold.ttf": "/sunkissacademy/static/media/FuzzyBubbles-Bold.d8fe6e610255fa56e01d.ttf",
     "static/media/GoogleStars.png": "/sunkissacademy/static/media/GoogleStars.85474fab6c76a04d44ba.png",
+    "static/media/Instagram_Icon.svg": "/sunkissacademy/static/media/Instagram_Icon.91084741d108d56af3316af30168910a.svg",
+    "static/media/Google_Icon.svg": "/sunkissacademy/static/media/Google_Icon.d7f092af888a54de79ed9c9303d689d7.svg",
     "index.html": "/sunkissacademy/index.html",
-    "main.3badc625.css.map": "/sunkissacademy/static/css/main.3badc625.css.map",
-    "main.7dbed01f.js.map": "/sunkissacademy/static/js/main.7dbed01f.js.map",
+    "main.80ae5977.css.map": "/sunkissacademy/static/css/main.80ae5977.css.map",
+    "main.5d670033.js.map": "/sunkissacademy/static/js/main.5d670033.js.map",
     "453.faf198cd.chunk.js.map": "/sunkissacademy/static/js/453.faf198cd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3badc625.css",
-    "static/js/main.7dbed01f.js"
+    "static/css/main.80ae5977.css",
+    "static/js/main.5d670033.js"
   ]
 }
