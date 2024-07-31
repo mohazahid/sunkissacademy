@@ -1,29 +1,68 @@
 import React, { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import { useNavigate, useLocation } from "react-router-dom";
+
+import Logo from "../img/SunkissLogo.svg"
 export default function NavBar() {
-  // const [BurgerOpen, setBurgerOpen] = useState(false)
-
-  // const toggleBurger = () => {
-  //     setBurgerOpen(false)
-  // }
-
-  // const handleScroll = (_id: any) => {
-  //     const element = document.getElementById(_id)
-  //     if(element) {
-  //     element.scrollIntoView({behavior: 'smooth'})
-  //     }
-  //     toggleBurger()
-  // }
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
   const [BurgerOpen, setBurgerOpen] = useState(false);
+  const [letScroll, setletScroll] = useState(false);
+
+  interface ListProps {
+    name: string;
+  }
+
+  function List(props: ListProps) {
+    let loc = "/" + props.name;
+    let name = props.name;
+    if (props.name === "home") {  
+      loc = "/";
+      name = "Home";
+    }
+    if (props.name === "about") {
+      loc = "/about";
+      name = "About Us";
+    }
+    if (props.name === "contact") {
+      loc = "/contact";
+      name = "Contact Us";
+    }
+    if (props.name === "hours") {
+      loc = "/hours";
+      name = "Hours";
+    }
+    return (
+    <li
+            className={` border-gray-400 my-4 font-primary w-full border-b ${
+              location.pathname ===  loc
+                ? "text-indigo-600"
+                : "hover:text-slate-500"
+            }`}
+          >
+            <button onClick={() => handleNav(loc)}>{props.name}</button>
+          </li>
+    )
+  }
+  useEffect(() => {
+      if (letScroll) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "scroll";
+      }
+   
+    }, [letScroll]);
 
   const toggleBurger = () => {
-    setBurgerOpen(false);
+    setBurgerOpen(true);
+    setletScroll(true);
   };
+  const closeBurger = () => {
+    setBurgerOpen(false);
+    setletScroll(false);
+  }
   const handleNav = (_id: string) => {
     navigate(`${_id}`);
     toggleBurger();
@@ -43,86 +82,48 @@ export default function NavBar() {
   return (
     <nav
       style={{ userSelect: "none" }}
-      className={`bg-[#9cdee7] font-BubblyBold sticky px-4 py-5 flex justify-start items-center top-0 w-full transition-transform duration-300 ease-in-out ${
+      className={`bg-[#9cdee7] font-BubblyBold sticky py-5 flex justify-center items-center top-0 w-full transition-transform duration-300 ease-in-out z-50 ${
         visible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <button className={"text-2xl"} onClick={() => navigate("/")}>
-        Sunkiss Academy
+    <div className={BurgerOpen ? 'Opac' : 'hideMenuNav'}/>
+    <div className="max-w-[80rem] flex w-full max-auto justify-between">
+    <div className="w-full flex items-center justify-between overflow-hidden ">
+      <button className={"ml-4 flex"} onClick={() => navigate("/")}>
+       <img src= {Logo} alt="" className="w-[8rem]"/>
       </button>
-      <section>
+      <section className="lg:hidden flex">
         <div
           className="lg:hidden"
-          onClick={() => setBurgerOpen((prev) => !prev)}
+          onClick={() =>  toggleBurger()}
         >
-          <button className="navbar-burger flex items-center text-black absolute -right-2 transform -translate-y-1/2 -translate-x-1/2">
-            {BurgerOpen ? (
-              <XMarkIcon className="h-8 w-8 text-gray-600" />
-            ) : (
-              <Bars3Icon className="h-8 w-8 text-gray-600" />
-            )}
+          <button className="navbar-burger flex items-center text-black absolute -right-2 transform -translate-y-1/2 -translate-x-1/2 mr-2">
+            <Bars3Icon className="h-8 w-8 text-gray-600 "/>
           </button>
         </div>
+        
+
         <div className={BurgerOpen ? "showMenuNav" : "hideMenuNav"}>
+          <div className="bg-white w-[70%] h-full absolute top-0 right-0 flex justify-start items-start p-4 flex-col ">
+          
           <div
-            className="absolute top-0 right-0 px-8 py-8"
-            onClick={() => setBurgerOpen(false)}
+            className="w-full flex justify-end items-center"
+            onClick={() => closeBurger()}
           >
-            <svg
-              className="h-8 w-8 text-gray-600"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
+            <XMarkIcon className="h-8 w-8 text-gray-600 " />
+           
           </div>
-          <ul className="flex flex-col items-center justify-between min-h-[250px]">
-            <li
-              className={` border-gray-400 mb-4 font-primary ${
-                location.pathname === "/home"
-                  ? "text-indigo-600"
-                  : "hover:text-slate-500"
-              }`}
-            >
-              <button onClick={() => handleNav("/")}>Home</button>
-            </li>
-            <li
-              className={` border-gray-400 my-4 font-primary ${
-                location.pathname === "/about"
-                  ? "text-indigo-600"
-                  : "hover:text-slate-500"
-              }`}
-            >
-              <button onClick={() => handleNav("/about")}>About Us</button>
-            </li>
-            <li
-              className={` border-gray-400 my-4 font-primary ${
-                location.pathname === "/contact"
-                  ? "text-indigo-600"
-                  : "hover:text-slate-500"
-              }`}
-            >
-              <button onClick={() => handleNav("/contact")}>Contact Us</button>
-            </li>
-            <li
-              className={` border-gray-400 my-4 font-primary ${
-                location.pathname === "/hours"
-                  ? "text-indigo-600"
-                  : "hover:text-slate-500"
-              }`}
-            >
-              <button onClick={() => handleNav("/hours")}>Hours</button>
-            </li>
+          <ul className="flex flex-col items-center justify-between w-full">
+            <List name={"home"}/>
+            <List name={"about"}/>
+            <List name={"hours"}/>
+            <List name={"contact"}/>
           </ul>
+        </div>
         </div>
       </section>
 
-      <ul className="hidden absolute top-1/2 right-1 transform -translate-y-1/2 -translate-x-12 lg:mx-auto lg:flex lg:items-center lg:w-auto max-w-screen-xl z-50">
+      <ul className="hidden lg:flex lg:items-center lg:justify-center">
         <li>
           <button
             className={`flex flex-col items-center font-primary px-4 py-1 ${
@@ -151,7 +152,7 @@ export default function NavBar() {
         </li>
         <li>
           <button
-            className={`flex flex-col items-center font-primary px-4 py-1 ${
+            className={`flex flex-col items-center font-primary  px-4 py-1 ${
               location.pathname === "/about"
                 ? "text-indigo-600"
                 : "hover:text-slate-500"
@@ -177,7 +178,7 @@ export default function NavBar() {
         </li>
         <li>
           <button
-            className={`flex flex-col items-center font-primary px-4 py-1 ${
+            className={`flex flex-col items-center font-primary px-4 py-1  ${
               location.pathname === "/hours"
                 ? "text-indigo-600"
                 : "hover:text-slate-500"
@@ -238,15 +239,34 @@ export default function NavBar() {
           width: 100%;
           height: 100vh;
           top: 0;
-          left: 0;
-          background: white;
+          right: 0;
           z-index: 100;
           display: flex;
           flex-direction: column;
           justify-content: space-evenly;
           align-items: center;
+          animation: slide-in 0.3s ease-in-out;
         }
+
+        @keyframes slide-in {
+          from {
+            transform: translateX(100%);
+          }
+          to {
+            transform: translateX(0);
+          }
+        }
+        .Opac{
+          position: absolute;
+          opacity: .33;
+          background-color: #000000;
+          width: 10000vw;
+          height: 10000vh;
+
+          }
       `}</style>
+      </div>
+      </div>
     </nav>
   );
 }

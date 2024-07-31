@@ -11,8 +11,9 @@ export default function Contact() {
     <main>
       <NavBar />
       <img src={MomBorder} alt="" className="h-[3rem] w-full" />
-      <section className="flex flex-col justify-center items-center bg-[#f4f771] py-10 mt-[2rem] h-[30vh] max-h-[25rem]">
-        <div className="flex flex-col text-center w-[70%] gap-2">
+      <div className="max-w-[80rem] flex justify-center items-center flex-col w-full mx-auto">
+      <section className="flex flex-col justify-center items-center bg-[#f4f771] w-full py-10 mt-[2rem] h-[30vh] max-h-[25rem]">
+        <div className="flex flex-col text-center gap-2">
           <h2 className="font-BubblyBold text-5xl">Contact Us </h2>
           <p className="text-2xl font-BubblyReg">
             Have any tips, advice, questions or feedback? We are excited to hear
@@ -52,17 +53,25 @@ export default function Contact() {
           </a>
         </div>
       </section>
-      <section className="flex flex-col justify-center items-center bg-[#f4f771] py-10 mt-[2rem] mb-[2rem] w-full">
-        <div className="flex flex-col text-center w-[70%] gap-2">
+      <section className="flex flex-col md:flex-row justify-center items-center py-10 mt-[2rem] mb-[2rem] w-full gap-2">
+        <div className="flex flex-col w-full p-2 md:w-[50%] gap-2">
           <h2 className="font-BubblyBold text-5xl">Contact Form </h2>
           <p className="text-2xl font-BubblyReg">
             Fill out the form below and we will get back to you as soon as
             possible.
           </p>
+          <p className="text-2xl font-BubblyReg">Other Ways to Get in Contact:</p>
+          <ul className="list-disc list-inside font-BubblyReg text-xl">
+              <li className="text-black hover:text-white">
+                sunkissacademy@gmail.com
+              </li>
+              <li className="text-black hover:text-white">(206)-334-5645</li>
+            </ul>
         </div>
 
         <ContactFrom />
       </section>
+      </div>
       <Footer />
     </main>
   );
