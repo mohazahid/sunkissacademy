@@ -1,20 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.985362e2.css",
-    "main.js": "/static/js/main.50dfe818.js",
+    "main.css": "/static/css/main.a4241eb9.css",
+    "main.js": "/static/js/main.0d44ae2d.js",
     "static/js/453.faf198cd.chunk.js": "/static/js/453.faf198cd.chunk.js",
+    "static/media/Struct.svg": "/static/media/Struct.40f4815eef00a110247c9617e5452b91.svg",
+    "static/media/Letters.jpg": "/static/media/Letters.ddb5d108130f843c94f0.jpg",
+    "static/media/MainPage.jpg": "/static/media/MainPage.ff5475bf0370a7ae9b58.jpg",
+    "static/media/Counting.jpg": "/static/media/Counting.723ef87b2d6f5d1f48ed.jpg",
+    "static/media/SunkissLogo.svg": "/static/media/SunkissLogo.6434d5e10d84605f65e951d65d51aa8e.svg",
+    "static/media/ClockReal.png": "/static/media/ClockReal.437d855915f6386426a6.png",
     "static/media/FuzzyBubbles-Regular.ttf": "/static/media/FuzzyBubbles-Regular.2cbdb4122a6430864d6c.ttf",
     "static/media/FuzzyBubbles-Bold.ttf": "/static/media/FuzzyBubbles-Bold.d8fe6e610255fa56e01d.ttf",
     "static/media/GoogleStars.png": "/static/media/GoogleStars.85474fab6c76a04d44ba.png",
     "static/media/Instagram_Icon.svg": "/static/media/Instagram_Icon.91084741d108d56af3316af30168910a.svg",
     "static/media/Google_Icon.svg": "/static/media/Google_Icon.d7f092af888a54de79ed9c9303d689d7.svg",
     "index.html": "/index.html",
-    "main.985362e2.css.map": "/static/css/main.985362e2.css.map",
-    "main.50dfe818.js.map": "/static/js/main.50dfe818.js.map",
+    "main.a4241eb9.css.map": "/static/css/main.a4241eb9.css.map",
+    "main.0d44ae2d.js.map": "/static/js/main.0d44ae2d.js.map",
     "453.faf198cd.chunk.js.map": "/static/js/453.faf198cd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.985362e2.css",
-    "static/js/main.50dfe818.js"
+    "static/css/main.a4241eb9.css",
+    "static/js/main.0d44ae2d.js"
   ]
 }
