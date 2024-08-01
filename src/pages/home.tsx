@@ -14,6 +14,7 @@ import Face from "../img/MainPage.jpg";
 import Curric from "../img/Counting.jpg";
 import Letters from "../img/Letters.jpg";
 import Struct from "../img/Struct.svg";
+import Staff from "../img/Staff.jpg";
 
 function Review(props: { Name: string; review: string }) {
   console.log(props);
@@ -180,7 +181,7 @@ export default function HomePage() {
           whileInView={{ x: 0, y: 0, transition: { duration: 2 } }}
           viewport={{ once: true }}
           >
-            <img src={Letters} alt="" className="w-[30rem] rounded-md" />
+            <img src={Staff} alt="" className="w-[30rem] rounded-md" />
             <div className="flex flex-col items-center justify-center">
               <h1 className="text-2xl"> Experienced Staff</h1>
               <p className="font-BubblyReg">
@@ -217,7 +218,7 @@ export default function HomePage() {
                 childhood education.{" "}
               </p>
             </div>
-            <img src={Letters} alt="" className="w-[30rem] rounded-md" />
+            <img src={Staff} alt="" className="w-[30rem] rounded-md" />
           </motion.div>
         </div>
         <motion.div
@@ -226,6 +227,9 @@ export default function HomePage() {
           whileInView={{ x: 0, y: 0, transition: { duration: 1 } }}
           viewport={{ once: true }}
         >
+          <h1 className="font-BubblyBold lg:text-6xl md:text-6xl text-4xl text-center mb-2">
+            Google 5 Star Reviews
+          </h1>
           <Swiper
             slidesPerView={slidesPerView}
             spaceBetween={50}

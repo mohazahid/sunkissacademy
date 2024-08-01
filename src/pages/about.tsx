@@ -12,7 +12,7 @@ export default function About() {
       <img src={MomBorder} alt="" className="h-[3rem]" />
       <img src={GreenWaveTurned} alt="" className="h-[3rem] w-full" />
       <section className="flex justify-center items-center px-4 py-5 bg-[#a0f885]">
-        <div className="flex flex-col w-[70%] gap-4 max-w-[60rem]">
+        <div className="flex flex-col gap-4  max-w-[80rem]  p-8">
           <h1 className="font-BubblyBold lg:text-6xl md:text-6xl text-4xl">
             Welcome to Sunkiss Academy Childcare!
           </h1>
@@ -26,8 +26,8 @@ export default function About() {
         </div>
       </section>
       <img src={GreenWave} alt="" className="h-[3rem] w-full" />
-      <section className="flex flex-col justify-center items-center py-10 mt-[2rem]">
-        <div className="flex flex-col w-[70%] gap-2 max-w-[60rem]">
+      <section className="flex flex-col justify-center items-center py-10 mt-[1rem] ">
+        <div className="flex flex-col  gap-2  max-w-[80rem]  px-8">
           <h2 className="font-BubblyBold text-5xl">Our Philosophy </h2>
           <p className="text-2xl font-BubblyReg">
             I believe that each child is unique in their way. Each child grows
@@ -59,7 +59,7 @@ export default function About() {
         </div>
       </section>
       <section className="flex flex-col justify-center items-center bg-[#4228b3] py-10 mt-[2rem] gap-2 text-white">
-        <div className="flex flex-col w-[70%] gap-2 max-w-[60rem]">
+        <div className="flex flex-col  gap-2  max-w-[80rem]  px-8">
           <h2 className="font-BubblyBold text-5xl">Our Programs </h2>
           <p className="text-2xl font-BubblyReg">
             Sunkiss Academy Childcare offers a variety of programs designed to
@@ -67,7 +67,7 @@ export default function About() {
             include:
           </p>
         </div>
-        <ul className="flex flex-col gap-6 w-[70%] max-w-[60rem]">
+        <ul className="flex flex-col gap-6 max-w-[80rem]  px-8">
           <li className="text-2xl font-BubblyReg">
             Infant Care: A nurturing environment for our youngest learners to
             feel safe and loved while they explore and develop essential skills.

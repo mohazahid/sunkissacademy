@@ -3,8 +3,8 @@ import React from "react";
 export default function Footer() {
   return (
     <footer className="bg-[#e7dfc7] text-black font-BubblyBold w-full">
-      <div className="container mx-auto py-8 px-8 max-w-[80rem]">
-        <div className="flex justify-between">
+      <div className="container mx-auto p-8 max-w-[80rem]">
+        <div className="flex justify-between flex-col md:flex-row">
           <div className="space-y-4">
             <h2 className="text-xl font-bold">Quick Links</h2>
             <ul className="list-disc list-inside">
