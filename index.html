@@ -1,1 +1,820 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="SunkissLogo.svg"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="Sunkiss Academy" content="In-Home Childcare based in Lynnwood, WA"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>Sunkiss Academy</title><script defer="defer" src="/static/js/main.861e0784.js"></script><link href="/static/css/main.64980b38.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail" data-bg-color="#FFFCF0">
+  <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="500" fill="#FFFCF0"/>
+    <!-- Nav bar -->
+    <rect x="0" y="0" width="800" height="52" fill="#FAFAF8"/>
+    <circle cx="44" cy="26" r="16" fill="url(#sg)"/>
+    <text x="68" y="31" font-family="sans-serif" font-weight="900" font-size="15" fill="#1A1A1A">Sunkiss Academy</text>
+    <rect x="600" y="14" width="88" height="24" rx="8" fill="#FF5C00"/>
+    <!-- Hero headline -->
+    <text x="60" y="112" font-family="sans-serif" font-weight="900" font-size="34" fill="#111">Where little ones</text>
+    <text x="60" y="152" font-family="sans-serif" font-weight="900" font-size="34" fill="#FF8800">blossom &amp; grow &#9728;</text>
+    <!-- Hero image placeholder -->
+    <rect x="520" y="70" width="240" height="200" rx="20" fill="url(#hg)"/>
+    <!-- Stat cards -->
+    <rect x="60" y="290" width="156" height="68" rx="14" fill="#FF8800"/>
+    <text x="138" y="326" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="22" fill="#fff">6</text>
+    <text x="138" y="345" text-anchor="middle" font-family="sans-serif" font-size="11" fill="rgba(255,255,255,.8)">Max children</text>
+    <rect x="228" y="290" width="156" height="68" rx="14" fill="#FFAA00"/>
+    <text x="306" y="326" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="18" fill="#3A2C00">0–13</text>
+    <text x="306" y="345" text-anchor="middle" font-family="sans-serif" font-size="11" fill="rgba(0,0,0,.5)">Ages welcome</text>
+    <rect x="396" y="290" width="156" height="68" rx="14" fill="#FF5C00"/>
+    <text x="474" y="326" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="14" fill="#fff">6am–6pm</text>
+    <text x="474" y="345" text-anchor="middle" font-family="sans-serif" font-size="11" fill="rgba(255,255,255,.8)">Mon–Fri</text>
+    <rect x="564" y="290" width="156" height="68" rx="14" fill="#FF9500"/>
+    <text x="642" y="331" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="13" fill="#fff">Hindi &amp; Urdu</text>
+    <!-- Bottom warm strip -->
+    <rect x="0" y="420" width="800" height="80" fill="url(#bg)"/>
+    <defs>
+      <linearGradient id="sg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#FFAA00"/>
+        <stop offset="100%" stop-color="#FF9000"/>
+      </linearGradient>
+      <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#FFD4A0"/>
+        <stop offset="100%" stop-color="#FFB860"/>
+      </linearGradient>
+      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#FF8800"/>
+        <stop offset="100%" stop-color="#FFAA00"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</template>
+
+<helmet>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/build/index.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Nunito', sans-serif; background: #FAFAF8; color: #1A1A1A; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    [data-animate] { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1); }
+    [data-animate].vis { opacity: 1; transform: none; }
+    [data-d="2"] { transition-delay: 0.12s; }
+    [data-d="3"] { transition-delay: 0.24s; }
+    [data-d="4"] { transition-delay: 0.36s; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+    @keyframes hero-in { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+    @keyframes badge-ping { 0%,100%{box-shadow:0 0 0 0 rgba(255,170,0,.55)} 70%{box-shadow:0 0 0 10px rgba(249,199,79,0)} }
+    #reviews-track { will-change: transform; }
+    .review-card { width: 320px; }
+    @media (max-width: 768px) { .review-card { width: calc(100vw - 64px) !important; } }
+
+    /* ── Mobile ────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      /* Section padding */
+      section, footer { padding-left: 20px !important; padding-right: 20px !important; }
+      section { padding-top: 64px !important; padding-bottom: 64px !important; }
+
+      /* Nav */
+      .nav-inner { padding: 0 20px !important; height: 58px !important; }
+      .nav-links { display: none !important; }
+      .nav-enroll { padding: 9px 16px !important; font-size: 14px !important; }
+
+      /* Hero */
+      .hero-section { padding: 56px 20px 80px !important; }
+      .hero-inner { flex-direction: column !important; gap: 28px !important; }
+      .hero-inner h1 { font-size: 36px !important; }
+      .hero-inner p { font-size: 16px !important; }
+      .hero-img { flex: none !important; width: 100% !important; height: 260px !important; }
+
+      /* Quick facts */
+      .quick-facts { grid-template-columns: 1fr 1fr !important; margin-top: -28px !important; }
+
+      /* Programs */
+      .programs-grid { grid-template-columns: 1fr 1fr !important; }
+
+      /* About */
+      .about-inner { flex-direction: column !important; gap: 28px !important; }
+      .about-inner h2 { font-size: 32px !important; }
+      .about-img { flex: none !important; width: 100% !important; height: 260px !important; }
+
+      /* Schedule */
+      .schedule-grid { grid-template-columns: 1fr 1fr !important; }
+
+      /* Meals */
+      .meals-inner { flex-direction: column !important; gap: 28px !important; }
+      .meals-inner h2 { font-size: 32px !important; }
+      .meals-img { flex: none !important; width: 100% !important; height: 240px !important; }
+
+      /* Gallery */
+      .gallery-grid { grid-template-columns: 1fr 1fr !important; grid-template-rows: 160px 160px 160px !important; }
+      .gallery-hero { grid-row: auto !important; grid-column: 1 / -1 !important; }
+
+      /* Reviews slider: 1 card, full width */
+      .reviews-section { padding-left: 0 !important; padding-right: 0 !important; }
+      .rev-container { padding: 0 16px !important; }
+      .rev-buttons { display: none !important; }
+      .review-card { width: calc(100vw - 32px) !important; }
+
+      /* Contact */
+      .contact-inner { flex-direction: column !important; gap: 32px !important; }
+      .contact-inner h2 { font-size: 32px !important; }
+      .contact-sidebar { flex: none !important; width: 100% !important; }
+      .form-grid { grid-template-columns: 1fr !important; }
+
+      /* CTA */
+      .cta-section { padding: 64px 20px !important; }
+      .cta-section h2 { font-size: 32px !important; }
+
+      /* Footer */
+      .footer-inner { padding: 40px 20px 28px !important; }
+      .footer-cols { flex-direction: column !important; gap: 28px !important; }
+
+      /* Floating button: smaller */
+      .float-call { padding: 12px 18px !important; font-size: 14px !important; bottom: 16px !important; right: 16px !important; }
+    }
+  </style>
+</helmet>
+
+<!-- NAV -->
+<nav style="{{ navStyle }}">
+  <div class="nav-inner" style="max-width: 1100px; margin: 0 auto; display: flex; align-items: center; height: 66px; padding: 0 40px;">
+    <a href="#hero" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #1A1A1A; font-size: 20px; font-weight: 900; flex-shrink: 0;">
+      <div style="width: 38px; height: 38px; background: linear-gradient(135deg, #FFAA00 0%, #FF9000 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 3px 10px rgba(255,170,0,.45);">☀</div>
+      Sunkiss Academy
+    </a>
+    <div class="nav-links" style="flex: 1; display: flex; justify-content: center; gap: 2px;">
+      <a href="#about" style="font-size: 15px; font-weight: 700; color: #4A4A4A; text-decoration: none; padding: 7px 14px; border-radius: 8px;" style-hover="background: #F2F2EE; color: #111;">About</a>
+      <a href="#programs" style="font-size: 15px; font-weight: 700; color: #4A4A4A; text-decoration: none; padding: 7px 14px; border-radius: 8px;" style-hover="background: #F2F2EE; color: #111;">Programs</a>
+      <a href="#schedule" style="font-size: 15px; font-weight: 700; color: #4A4A4A; text-decoration: none; padding: 7px 14px; border-radius: 8px;" style-hover="background: #F2F2EE; color: #111;">Schedule</a>
+      <a href="#gallery" style="font-size: 15px; font-weight: 700; color: #4A4A4A; text-decoration: none; padding: 7px 14px; border-radius: 8px;" style-hover="background: #F2F2EE; color: #111;">Gallery</a>
+      <a href="#faq" style="font-size: 15px; font-weight: 700; color: #4A4A4A; text-decoration: none; padding: 7px 14px; border-radius: 8px;" style-hover="background: #F2F2EE; color: #111;">FAQ</a>
+    </div>
+    <a href="#contact" class="nav-enroll" style="background: #FF5C00; color: #fff; padding: 10px 22px; border-radius: 10px; font-size: 15px; font-weight: 800; text-decoration: none; flex-shrink: 0; box-shadow: 0 3px 14px rgba(255,92,0,.35);" style-hover="background: #E85000; transform: translateY(-1px); box-shadow: 0 5px 20px rgba(255,92,0,.45);">Enroll Now →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="hero-section" style="background: linear-gradient(135deg, #FFFCF0 0%, #FFF4E0 100%); padding: 88px 40px 112px; overflow: hidden; position: relative;">
+  <div style="position: absolute; top: -100px; right: -100px; width: 440px; height: 440px; background: #FFAA00; border-radius: 50%; opacity: .09; pointer-events: none;"></div>
+  <div style="position: absolute; bottom: -80px; left: 3%; width: 300px; height: 300px; background: #FF8800; border-radius: 50%; opacity: .07; pointer-events: none;"></div>
+  <div style="position: absolute; top: 35%; right: 28%; width: 140px; height: 140px; background: #FF5C00; border-radius: 50%; opacity: .05; pointer-events: none;"></div>
+
+  <div class="hero-inner" style="max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 64px;">
+    <div style="flex: 1; min-width: 0; animation: hero-in 0.8s cubic-bezier(.16,1,.3,1) both;">
+      <div style="display: inline-flex; align-items: center; gap: 8px; background: #FFF6E0; border: 2px solid #FFAA00; padding: 6px 16px; border-radius: 100px; font-size: 13px; font-weight: 800; color: #B04800; margin-bottom: 22px; animation: badge-ping 2.8s ease-in-out infinite;">
+        🌟 Now Enrolling - Fall 2026
+      </div>
+      <h1 style="font-size: 56px; font-weight: 900; line-height: 1.08; color: #111; margin: 0 0 18px; text-wrap: pretty;">
+        Where little ones<br/>
+        <span style="color: #FF8800;">blossom</span> &amp; grow ☀️
+      </h1>
+      <p style="font-size: 19px; color: #555; line-height: 1.65; margin: 0 0 30px; max-width: 440px; text-wrap: pretty;">
+        A warm, home-based childcare in Lynnwood, WA. Licensed preschool care for ages 0-5 with a personal touch that feels like family.
+      </p>
+      <div style="display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; align-items: center;">
+        <a href="#contact" style="background: #FF8800; color: #fff; padding: 15px 30px; border-radius: 14px; font-size: 17px; font-weight: 800; text-decoration: none; box-shadow: 0 6px 24px rgba(255,136,0,.38); display: inline-block;" style-hover="transform: translateY(-2px); box-shadow: 0 10px 32px rgba(255,136,0,.45);">📅 Book a Tour</a>
+        <a href="#programs" style="background: #fff; color: #FF8800; border: 2.5px solid #FF8800; padding: 15px 26px; border-radius: 14px; font-size: 17px; font-weight: 700; text-decoration: none; display: inline-block;" style-hover="background: #FFF4E0;">See Programs</a>
+      </div>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 700; color: #FF8800;"><span style="width: 22px; height: 22px; background: #FFF4E0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px;">✓</span>Hindi &amp; Urdu spoken</div>
+        <div style="display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 700; color: #FF5C00;"><span style="width: 22px; height: 22px; background: #FFF2E8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px;">✓</span>Homemade meals daily</div>
+      </div>
+    </div>
+
+    <!-- Hero image -->
+    <div class="hero-img" style="flex: 0 0 380px; height: 420px; border-radius: 28px; animation: float 6s ease-in-out infinite; box-shadow: 0 24px 64px rgba(255,136,0,.2); overflow: hidden;">
+      <img src="src/img/MainPage.jpg" alt="Children at Sunkiss Academy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+    </div>
+  </div>
+</section>
+
+<!-- QUICK FACTS -->
+<div style="padding: 0 40px;">
+  <div class="quick-facts" style="max-width: 1100px; margin: -52px auto 0; display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; position: relative; z-index: 10;">
+    <div style="background: #FF8800; color: #fff; padding: 22px 18px; border-radius: 18px; text-align: center; box-shadow: 0 8px 32px rgba(255,136,0,.3);">
+      <div style="font-size: 38px; font-weight: 900; line-height: 1;">12</div>
+      <div style="font-size: 15px; font-weight: 700; margin-top: 4px;">Max children</div>
+      <div style="font-size: 12px; opacity: .65; margin-top: 2px;">Small &amp; personal</div>
+    </div>
+    <div style="background: #FFAA00; padding: 22px 18px; border-radius: 18px; text-align: center; box-shadow: 0 8px 32px rgba(255,170,0,.3); color: #3A2C00;">
+      <div style="font-size: 38px; font-weight: 900; line-height: 1;">0-5</div>
+      <div style="font-size: 15px; font-weight: 700; margin-top: 4px;">Ages welcome</div>
+      <div style="font-size: 12px; opacity: .6; margin-top: 2px;">Infant to preschool</div>
+    </div>
+    <div style="background: #FF5C00; color: #fff; padding: 22px 18px; border-radius: 18px; text-align: center; box-shadow: 0 8px 32px rgba(255,92,0,.3);">
+      <div style="font-size: 28px; font-weight: 900; line-height: 1;">8am-5pm</div>
+      <div style="font-size: 15px; font-weight: 700; margin-top: 4px;">Monday - Friday</div>
+      <div style="font-size: 12px; opacity: .65; margin-top: 2px;">Full-day care</div>
+    </div>
+    <div style="background: #FF9500; color: #fff; padding: 22px 18px; border-radius: 18px; text-align: center; box-shadow: 0 8px 32px rgba(255,149,0,.3);">
+      <div style="font-size: 26px; font-weight: 900; line-height: 1;">हिं · اردو</div>
+      <div style="font-size: 15px; font-weight: 700; margin-top: 4px;">Hindi &amp; Urdu</div>
+      <div style="font-size: 12px; opacity: .65; margin-top: 2px;">Multilingual care</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<section id="programs" style="background: #FAFAF8; padding: 96px 40px 80px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 48px;" data-animate>
+      <div style="display: inline-block; background: #FFF4E0; color: #FF8800; font-size: 13px; font-weight: 800; padding: 5px 16px; border-radius: 100px; letter-spacing: .8px; margin-bottom: 14px;">OUR PROGRAMS</div>
+      <h2 style="font-size: 42px; font-weight: 900; color: #111; margin: 0 0 12px; line-height: 1.1;">A program for every stage</h2>
+      <p style="font-size: 18px; color: #666; max-width: 500px; margin: 0 auto; text-wrap: pretty; line-height: 1.65;">From tiny infants to curious school-agers -a loving program designed just for them.</p>
+    </div>
+    <div class="programs-grid" style="display: grid; grid-template-columns: repeat(3,1fr); gap: 18px;">
+      <div style="background: #fff; border: 2px solid #FFAA00; border-radius: 20px; padding: 28px 22px; transition: transform 0.25s ease, box-shadow 0.25s ease;" data-animate style-hover="transform: translateY(-7px); box-shadow: 0 18px 48px rgba(249,199,79,.22);">
+        <div style="width: 64px; height: 64px; background: #FFF6E0; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 16px;">🍼</div>
+        <h3 style="font-size: 20px; font-weight: 900; color: #111; margin: 0 0 4px;">Infant</h3>
+        <div style="font-size: 13px; font-weight: 800; color: #B04800; margin-bottom: 12px;">Birth – 18 months</div>
+        <p style="font-size: 15px; color: #666; line-height: 1.65; margin: 0;">Gentle, attentive care built around each baby's unique rhythms, sensory play, and early development.</p>
+      </div>
+      <div style="background: #fff; border: 2px solid #FF8800; border-radius: 20px; padding: 28px 22px; transition: transform 0.25s ease, box-shadow 0.25s ease;" data-animate data-d="2" style-hover="transform: translateY(-7px); box-shadow: 0 18px 48px rgba(255,136,0,.18);">
+        <div style="width: 64px; height: 64px; background: #FFF4E0; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 16px;">🐣</div>
+        <h3 style="font-size: 20px; font-weight: 900; color: #111; margin: 0 0 4px;">Toddler</h3>
+        <div style="font-size: 13px; font-weight: 800; color: #7A3200; margin-bottom: 12px;">18 months – 3 years</div>
+        <p style="font-size: 15px; color: #666; line-height: 1.65; margin: 0;">Curiosity-led play, language building, and independence nurtured in a safe home environment.</p>
+      </div>
+      <div style="background: #fff; border: 2px solid #FF5C00; border-radius: 20px; padding: 28px 22px; transition: transform 0.25s ease, box-shadow 0.25s ease;" data-animate data-d="3" style-hover="transform: translateY(-7px); box-shadow: 0 18px 48px rgba(255,107,107,.18);">
+        <div style="width: 64px; height: 64px; background: #FFF2E8; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 16px;">📚</div>
+        <h3 style="font-size: 20px; font-weight: 900; color: #111; margin: 0 0 4px;">Preschool</h3>
+        <div style="font-size: 13px; font-weight: 800; color: #7A2800; margin-bottom: 12px;">3 – 5 years</div>
+        <p style="font-size: 15px; color: #666; line-height: 1.65; margin: 0;">Stories, puzzles, art, and social skills -preparing your child for kindergarten with joy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT AYESHA -->
+<section id="about" style="background: #FFF9EE; padding: 96px 40px;">
+  <div class="about-inner" style="max-width: 1100px; margin: 0 auto; display: flex; gap: 72px; align-items: center;">
+    <div class="about-img" style="flex: 0 0 360px; height: 420px; border-radius: 28px; overflow: hidden; box-shadow: 0 16px 48px rgba(255,136,0,.15);" data-animate>
+      <img src="src/img/Staff.jpg" alt="Ayesha" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+    </div>
+    <div style="flex: 1;" data-animate data-d="2">
+      <div style="display: inline-block; background: #FFE8D0; color: #B04800; font-size: 13px; font-weight: 800; padding: 5px 16px; border-radius: 100px; letter-spacing: .8px; margin-bottom: 16px;">ABOUT AYESHA</div>
+      <h2 style="font-size: 42px; font-weight: 900; color: #111; margin: 0 0 18px; line-height: 1.1;">Hi, I'm Ayesha! 👋</h2>
+      <p style="font-size: 17px; color: #555; line-height: 1.8; margin: 0 0 16px;">I've always believed the early years of a child's life are the most precious. That's why I created Sunkiss Academy - a home-based childcare where every child is seen, heard, and loved.</p>
+      <p style="font-size: 17px; color: #555; line-height: 1.8; margin: 0 0 28px;">As a licensed provider and bilingual caregiver (Hindi &amp; Urdu), I'm dedicated to giving each child the personalized attention they deserve. With a maximum of 12 children, every family gets the care and warmth they'd hope for.</p>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 8px; background: #fff; border: 1.5px solid #E8E4D8; padding: 10px 16px; border-radius: 12px; font-size: 14px; font-weight: 700;"><span style="font-size: 18px;">🌍</span> Hindi &amp; Urdu spoken</div>
+        <div style="display: flex; align-items: center; gap: 8px; background: #fff; border: 1.5px solid #E8E4D8; padding: 10px 16px; border-radius: 12px; font-size: 14px; font-weight: 700;"><span style="font-size: 18px;">🍱</span> Homemade meals</div>
+        <div style="display: flex; align-items: center; gap: 8px; background: #fff; border: 1.5px solid #E8E4D8; padding: 10px 16px; border-radius: 12px; font-size: 14px; font-weight: 700;"><span style="font-size: 18px;">❤️</span> Max 12 kids</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAILY SCHEDULE -->
+<section id="schedule" style="background: #fff; padding: 96px 40px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 48px;" data-animate>
+      <div style="display: inline-block; background: #FFF4E0; color: #B04800; font-size: 13px; font-weight: 800; padding: 5px 16px; border-radius: 100px; letter-spacing: .8px; margin-bottom: 14px;">DAILY SCHEDULE</div>
+      <h2 style="font-size: 42px; font-weight: 900; color: #111; margin: 0 0 12px; line-height: 1.1;">A day at Sunkiss ☀️</h2>
+      <p style="font-size: 17px; color: #666; max-width: 480px; margin: 0 auto; line-height: 1.65;">A warm routine children can count on -filled with play, learning, rest, and love.</p>
+    </div>
+    <div class="schedule-grid" style="display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 12px;" data-animate data-d="2">
+      <div style="background: #FFF6E0; border-radius: 16px; padding: 20px 16px; border-bottom: 4px solid #FFAA00;">
+        <div style="font-size: 13px; font-weight: 800; color: #B04800; margin-bottom: 6px;">8:00 am</div>
+        <div style="font-size: 18px; font-weight: 900; color: #111; margin-bottom: 4px;">Arrival</div>
+        <div style="font-size: 14px; color: #777;">Free play &amp; settling in</div>
+      </div>
+      <div style="background: #FFF4E0; border-radius: 16px; padding: 20px 16px; border-bottom: 4px solid #FF8800;">
+        <div style="font-size: 13px; font-weight: 800; color: #7A3200; margin-bottom: 6px;">10:00 am</div>
+        <div style="font-size: 18px; font-weight: 900; color: #111; margin-bottom: 4px;">Breakfast</div>
+        <div style="font-size: 14px; color: #777;">Homemade &amp; nutritious</div>
+      </div>
+      <div style="background: #FFF2E8; border-radius: 16px; padding: 20px 16px; border-bottom: 4px solid #FF5C00;">
+        <div style="font-size: 13px; font-weight: 800; color: #7A2800; margin-bottom: 6px;">9:00 am</div>
+        <div style="font-size: 18px; font-weight: 900; color: #111; margin-bottom: 4px;">Circle Time</div>
+        <div style="font-size: 14px; color: #777;">Songs, stories &amp; sharing</div>
+      </div>
+      <div style="background: #FFF4E0; border-radius: 16px; padding: 20px 16px; border-bottom: 4px solid #FF9500;">
+        <div style="font-size: 13px; font-weight: 800; color: #7A3200; margin-bottom: 6px;">10:30 am</div>
+        <div style="font-size: 18px; font-weight: 900; color: #111; margin-bottom: 4px;">Learning</div>
+        <div style="font-size: 14px; color: #777;">Activities &amp; exploration</div>
+      </div>
+    </div>
+    <div class="schedule-grid" style="display: grid; grid-template-columns: repeat(4,1fr); gap: 12px;" data-animate data-d="3">
+      <div style="background: #FFF6E0; border-radius: 16px; padding: 20px 16px; border-bottom: 4px solid #FFAA00;">
+        <div style="font-size: 13px; font-weight: 800; color: #B04800; margin-bottom: 6px;">12:00 pm</div>
+        <div style="font-size: 18px; font-weight: 900; color: #111; margin-bottom: 4px;">Lunch</div>
+        <div style="font-size: 14px; color: #777;">Fresh homemade meal</div>
+      </div>
+      <div style="background: #FFF4E0; border-radius: 16px; padding: 20px 16px; border-bottom: 4px solid #FF8800;">
+        <div style="font-size: 13px; font-weight: 800; color: #7A3200; margin-bottom: 6px;">1:00 pm</div>
+        <div style="font-size: 18px; font-weight: 900; color: #111; margin-bottom: 4px;">Nap &amp; Rest</div>
+        <div style="font-size: 14px; color: #777;">Quiet time for all ages</div>
+      </div>
+      <div style="background: #FFF2E8; border-radius: 16px; padding: 20px 16px; border-bottom: 4px solid #FF5C00;">
+        <div style="font-size: 13px; font-weight: 800; color: #7A2800; margin-bottom: 6px;">2:30 pm</div>
+        <div style="font-size: 18px; font-weight: 900; color: #111; margin-bottom: 4px;">Outdoor Play</div>
+        <div style="font-size: 14px; color: #777;">Fresh air &amp; movement</div>
+      </div>
+      <div style="background: #FFF4E0; border-radius: 16px; padding: 20px 16px; border-bottom: 4px solid #FF9500;">
+        <div style="font-size: 13px; font-weight: 800; color: #7A3200; margin-bottom: 6px;">until 5:00 pm</div>
+        <div style="font-size: 18px; font-weight: 900; color: #111; margin-bottom: 4px;">Arts &amp; Pickup</div>
+        <div style="font-size: 14px; color: #777;">Creative time &amp; day wrap-up</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEALS -->
+<section id="meals" style="background: #FFF4E0; padding: 96px 40px;">
+  <div class="meals-inner" style="max-width: 1100px; margin: 0 auto; display: flex; gap: 72px; align-items: center;">
+    <div style="flex: 1;" data-animate>
+      <div style="display: inline-block; background: #fff; color: #FF8800; font-size: 13px; font-weight: 800; padding: 5px 16px; border-radius: 100px; letter-spacing: .8px; margin-bottom: 16px;">MEALS &amp; NUTRITION</div>
+      <h2 style="font-size: 42px; font-weight: 900; color: #111; margin: 0 0 16px; line-height: 1.1;">Homemade with love 🍱</h2>
+      <p style="font-size: 17px; color: #555; line-height: 1.8; margin: 0 0 32px;">Every meal is freshly prepared with wholesome ingredients. Good nutrition is the foundation of happy, focused little learners.</p>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="background: #fff; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 16px; box-shadow: 0 2px 14px rgba(255,136,0,.1);">
+          <div style="width: 50px; height: 50px; background: #FFF6E0; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0;">🌅</div>
+          <div><div style="font-size: 17px; font-weight: 800; margin-bottom: 3px;">Breakfast</div><div style="font-size: 14px; color: #666;">A warm, nutritious start every morning</div></div>
+        </div>
+        <div style="background: #fff; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 16px; box-shadow: 0 2px 14px rgba(255,136,0,.1);">
+          <div style="width: 50px; height: 50px; background: #FFF4E0; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0;">🍽️</div>
+          <div><div style="font-size: 17px; font-weight: 800; margin-bottom: 3px;">Lunch</div><div style="font-size: 14px; color: #666;">Fresh, balanced, home-cooked midday meal</div></div>
+        </div>
+        <div style="background: #fff; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 16px; box-shadow: 0 2px 14px rgba(255,136,0,.1);">
+          <div style="width: 50px; height: 50px; background: #FFF2E8; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0;">🍎</div>
+          <div><div style="font-size: 17px; font-weight: 800; margin-bottom: 3px;">Afternoon Snack</div><div style="font-size: 14px; color: #666;">Healthy bites to keep energy and focus up</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="meals-img" style="flex: 0 0 340px; height: 380px; border-radius: 28px; overflow: hidden; box-shadow: 0 16px 48px rgba(255,136,0,.15);" data-animate data-d="2">
+      <img src="src/img/Counting.jpg" alt="Learning activities" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="background: #fff; padding: 96px 40px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 48px;" data-animate>
+      <div style="display: inline-block; background: #FFF2E8; color: #CC4400; font-size: 13px; font-weight: 800; padding: 5px 16px; border-radius: 100px; letter-spacing: .8px; margin-bottom: 14px;">GALLERY</div>
+      <h2 style="font-size: 42px; font-weight: 900; color: #111; margin: 0 0 12px; line-height: 1.1;">Our days together 📷</h2>
+      <p style="font-size: 17px; color: #666; max-width: 400px; margin: 0 auto; line-height: 1.65;">Every day is full of learning, laughter, and love.</p>
+    </div>
+    <div class="gallery-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 200px 200px; gap: 12px;" data-animate data-d="2">
+      <div class="gallery-hero" style="grid-row: 1/3; border-radius: 22px; overflow: hidden;">
+        <img src="src/img/MainPage.jpg" alt="Sunkiss Academy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      </div>
+      <div style="border-radius: 22px; overflow: hidden;">
+        <img src="src/img/Letters.jpg" alt="Learning letters" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      </div>
+      <div style="border-radius: 22px; overflow: hidden;">
+        <img src="src/img/Clock.jpg" alt="Learning time" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      </div>
+      <div style="border-radius: 22px; overflow: hidden;">
+        <img src="src/img/Counting.jpg" alt="Counting activity" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      </div>
+      <div style="border-radius: 22px; overflow: hidden;">
+        <img src="src/img/Staff.jpg" alt="Our staff" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="reviews-section" style="background: #1E0A00; padding: 96px 0;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 40px;">
+    <div style="text-align: center; margin-bottom: 48px;" data-animate>
+      <div style="display: inline-block; background: rgba(255,255,255,.1); color: rgba(255,255,255,.65); font-size: 13px; font-weight: 800; padding: 5px 16px; border-radius: 100px; letter-spacing: .8px; margin-bottom: 14px;">TESTIMONIALS</div>
+      <h2 style="font-size: 42px; font-weight: 900; color: #fff; margin: 0 0 12px; line-height: 1.1;">What parents say 💬</h2>
+      <p style="font-size: 17px; color: rgba(255,255,255,.55); max-width: 420px; margin: 0 auto; line-height: 1.65;">Families trust Sunkiss Academy with what matters most.</p>
+    </div>
+  </div>
+
+  <!-- Slider -->
+  <div class="rev-container" style="position: relative; max-width: 1100px; margin: 0 auto; padding: 0 40px;">
+    <!-- Prev button -->
+    <button id="rev-prev" class="rev-buttons" onclick="{{ revPrev }}" style="{{ revPrevStyle }}">&#8592;</button>
+    <!-- Next button -->
+    <button id="rev-next" class="rev-buttons" onclick="{{ revNext }}" style="{{ revNextStyle }}">&#8594;</button>
+
+    <div style="overflow: hidden;">
+      <div id="reviews-track" style="{{ revTrackStyle }}">
+
+      <!-- Original set -->
+      <div class="review-card" style="flex-shrink: 0; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 22px; padding: 30px;">
+        <div style="font-size: 44px; color: #FFAA00; line-height: 1; margin-bottom: 14px; font-family: Georgia, serif;">"</div>
+        <p style="font-size: 15px; color: rgba(255,255,255,.85); line-height: 1.75; margin: 0 0 20px; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">A place like home, my son goes there since he was 4 months old. Ms Aysha is very professional and compassionate and loves my son like her own kid. She is the best. Highly recommend her if you want a place like home for your kids.</p>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 42px; height: 42px; background: #FFAA00; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #1E0A00; font-size: 16px; flex-shrink: 0;">NS</div>
+          <div><div style="font-size: 15px; font-weight: 800; color: #fff;">Nusrat Sabeel</div><div style="font-size: 12px; color: rgba(255,255,255,.45); margin-top: 2px;">⭐⭐⭐⭐⭐ · Google Review</div></div>
+        </div>
+      </div>
+
+      <div class="review-card" style="flex-shrink: 0; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 22px; padding: 30px;">
+        <div style="font-size: 44px; color: #FF8800; line-height: 1; margin-bottom: 14px; font-family: Georgia, serif;">"</div>
+        <p style="font-size: 15px; color: rgba(255,255,255,.85); line-height: 1.75; margin: 0 0 20px; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">We've felt Ayesha as a warm and sincere person right from the first day we met. Our son is enthusiastic about going to Ayesha's Daycare everyday. We're extremely grateful we found a place as Ayesha's for our kid.</p>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 42px; height: 42px; background: #FF8800; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; font-size: 16px; flex-shrink: 0;">RJ</div>
+          <div><div style="font-size: 15px; font-weight: 800; color: #fff;">Revathy Janakiraman</div><div style="font-size: 12px; color: rgba(255,255,255,.45); margin-top: 2px;">⭐⭐⭐⭐⭐ · Google Review</div></div>
+        </div>
+      </div>
+
+      <div class="review-card" style="flex-shrink: 0; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 22px; padding: 30px;">
+        <div style="font-size: 44px; color: #FF5C00; line-height: 1; margin-bottom: 14px; font-family: Georgia, serif;">"</div>
+        <p style="font-size: 15px; color: rgba(255,255,255,.85); line-height: 1.75; margin: 0 0 20px; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">Ayesha is a great teacher and very warm and caring towards kids. My daughter loves going to her daycare and she has learned so much. She is very good at communicating with the parents and keeping them updated.</p>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 42px; height: 42px; background: #FF5C00; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; font-size: 16px; flex-shrink: 0;">NR</div>
+          <div><div style="font-size: 15px; font-weight: 800; color: #fff;">Nisa Rahim</div><div style="font-size: 12px; color: rgba(255,255,255,.45); margin-top: 2px;">⭐⭐⭐⭐⭐ · Google Review</div></div>
+        </div>
+      </div>
+
+      <div class="review-card" style="flex-shrink: 0; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 22px; padding: 30px;">
+        <div style="font-size: 44px; color: #FF9500; line-height: 1; margin-bottom: 14px; font-family: Georgia, serif;">"</div>
+        <p style="font-size: 15px; color: rgba(255,255,255,.85); line-height: 1.75; margin: 0 0 20px; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">Ayesha is a very caring and loving person. She takes care of kids like her own. The only reason we had to move him out was because we moved to a different city. My son loved going to her daycare.</p>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 42px; height: 42px; background: #FF9500; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; font-size: 16px; flex-shrink: 0;">MS</div>
+          <div><div style="font-size: 15px; font-weight: 800; color: #fff;">Megha Shah</div><div style="font-size: 12px; color: rgba(255,255,255,.45); margin-top: 2px;">⭐⭐⭐⭐⭐ · Google Review</div></div>
+        </div>
+      </div>
+
+      <div class="review-card" style="flex-shrink: 0; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 22px; padding: 30px;">
+        <div style="font-size: 44px; color: #FFAA00; line-height: 1; margin-bottom: 14px; font-family: Georgia, serif;">"</div>
+        <p style="font-size: 15px; color: rgba(255,255,255,.85); line-height: 1.75; margin: 0 0 20px; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">Ayesha is so warm. The first day I met her when I did a tour before I signed up I found her presence extremely calm and welcoming. She is very professional and always keeps us updated about the kids activities.</p>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 42px; height: 42px; background: #FFAA00; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #1E0A00; font-size: 16px; flex-shrink: 0;">SR</div>
+          <div><div style="font-size: 15px; font-weight: 800; color: #fff;">Sarah Rines</div><div style="font-size: 12px; color: rgba(255,255,255,.45); margin-top: 2px;">⭐⭐⭐⭐⭐ · Google Review</div></div>
+        </div>
+      </div>
+
+      <div class="review-card" style="flex-shrink: 0; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 22px; padding: 30px;">
+        <div style="font-size: 44px; color: #FF8800; line-height: 1; margin-bottom: 14px; font-family: Georgia, serif;">"</div>
+        <p style="font-size: 15px; color: rgba(255,255,255,.85); line-height: 1.75; margin: 0 0 20px; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">Ayesha is so kind and caring. My son started with her at 6 months old and I was so nervous, but she was incredibly patient with me and my son. I always felt comfortable leaving him in her care.</p>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 42px; height: 42px; background: #FF8800; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; font-size: 16px; flex-shrink: 0;">MW</div>
+          <div><div style="font-size: 15px; font-weight: 800; color: #fff;">Meg Walsh</div><div style="font-size: 12px; color: rgba(255,255,255,.45); margin-top: 2px;">⭐⭐⭐⭐⭐ · Google Review</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Dots -->
+  <div style="display: flex; justify-content: center; gap: 8px; margin-top: 28px;">
+    <sc-for list="{{ revDots }}" as="dot">
+      <button onclick="{{ dot.go }}" style="{{ dot.style }}"></button>
+    </sc-for>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background: #FAFAF8; padding: 96px 40px;">
+  <div style="max-width: 680px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 48px;" data-animate>
+      <div style="display: inline-block; background: #FFF4E0; color: #FF8800; font-size: 13px; font-weight: 800; padding: 5px 16px; border-radius: 100px; letter-spacing: .8px; margin-bottom: 14px;">FAQ</div>
+      <h2 style="font-size: 42px; font-weight: 900; color: #111; margin: 0 0 12px; line-height: 1.1;">Got questions? 🙋</h2>
+      <p style="font-size: 17px; color: #666; line-height: 1.65;">Here are some things parents ask most often.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px;" data-animate data-d="2">
+      <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="6">
+        <div style="background: #fff; border-radius: 16px; overflow: hidden; border: 1.5px solid #E8E8E0; transition: border-color 0.2s;" style-hover="border-color: #C8D8F0;">
+          <button onClick="{{ faq.toggle }}" style="width: 100%; background: none; border: none; cursor: pointer; padding: 20px 22px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: 'Nunito', sans-serif; text-align: left;">
+            <span style="font-size: 17px; font-weight: 800; color: #111; line-height: 1.4;">{{ faq.q }}</span>
+            <span style="font-size: 26px; color: #FF8800; flex-shrink: 0; font-weight: 900; line-height: 1; min-width: 24px; text-align: center;">{{ faq.icon }}</span>
+          </button>
+          <sc-if value="{{ faq.open }}" hint-placeholder-val="{{ false }}">
+            <div style="padding: 0 22px 20px; border-top: 1px solid #F0F0E8; padding-top: 16px; font-size: 16px; color: #555; line-height: 1.75;">{{ faq.a }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section" style="background: linear-gradient(135deg, #FFAA00 0%, #FF9000 100%); padding: 88px 40px; text-align: center;">
+  <div style="max-width: 680px; margin: 0 auto;" data-animate>
+    <h2 style="font-size: 48px; font-weight: 900; color: #1A1A1A; margin: 0 0 14px; line-height: 1.1;">Limited spots available!</h2>
+    <p style="font-size: 19px; color: rgba(0,0,0,.6); margin: 0 0 34px; line-height: 1.65;">Only 12 children max - every child gets the personal attention they deserve. Don't miss your spot.</p>
+    <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+      <a href="#contact" style="background: #1A1A1A; color: #fff; padding: 16px 36px; border-radius: 14px; font-size: 18px; font-weight: 800; text-decoration: none; box-shadow: 0 6px 24px rgba(0,0,0,.25); display: inline-block;" style-hover="background: #333; transform: translateY(-2px);">📅 Schedule a Visit →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background: #fff; padding: 96px 40px;">
+  <div class="contact-inner" style="max-width: 1100px; margin: 0 auto; display: flex; gap: 72px; align-items: flex-start;" data-animate>
+    <div style="flex: 1;">
+      <div style="display: inline-block; background: #FFF2E8; color: #CC4400; font-size: 13px; font-weight: 800; padding: 5px 16px; border-radius: 100px; letter-spacing: .8px; margin-bottom: 16px;">GET IN TOUCH</div>
+      <h2 style="font-size: 42px; font-weight: 900; color: #111; margin: 0 0 10px; line-height: 1.1;">Enroll your child ✉️</h2>
+      <p style="font-size: 17px; color: #666; margin: 0 0 28px; line-height: 1.65;">Fill out the form and Ayesha will get back to you within 24 hours.</p>
+
+      <sc-if value="{{ formNotSubmitted }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div>
+              <label style="display: block; font-size: 14px; font-weight: 700; color: #444; margin-bottom: 6px;">Parent name *</label>
+              <input id="parent_name" type="text" placeholder="Your name" style="width: 100%; border: 2px solid #E8E8E0; border-radius: 10px; padding: 12px 14px; font-size: 16px; font-family: 'Nunito', sans-serif; outline: none; background: #FAFAF8; transition: border-color .2s;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 14px; font-weight: 700; color: #444; margin-bottom: 6px;">Email *</label>
+              <input id="parent_email" type="email" placeholder="your@email.com" style="width: 100%; border: 2px solid #E8E8E0; border-radius: 10px; padding: 12px 14px; font-size: 16px; font-family: 'Nunito', sans-serif; outline: none; background: #FAFAF8; transition: border-color .2s;" />
+            </div>
+          </div>
+          <div>
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #444; margin-bottom: 6px;">Child's age / due date</label>
+            <input id="child_age" type="text" placeholder="e.g. 18 months, 3 years, due June 2026" style="width: 100%; border: 2px solid #E8E8E0; border-radius: 10px; padding: 12px 14px; font-size: 16px; font-family: 'Nunito', sans-serif; outline: none; background: #FAFAF8;" />
+          </div>
+          <div>
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #444; margin-bottom: 6px;">Message</label>
+            <textarea id="message" placeholder="Tell us about your child and what you're looking for..." style="width: 100%; border: 2px solid #E8E8E0; border-radius: 10px; padding: 12px 14px; font-size: 16px; font-family: 'Nunito', sans-serif; outline: none; background: #FAFAF8; resize: vertical; min-height: 112px;"></textarea>
+          </div>
+          <div>
+            <button onClick="{{ handleSubmit }}" style="background: #FF5C00; color: #fff; padding: 14px 32px; border-radius: 12px; font-size: 17px; font-weight: 800; border: none; cursor: pointer; box-shadow: 0 4px 18px rgba(255,92,0,.35); font-family: 'Nunito', sans-serif; display: inline-block;" style-hover="background: #E85000; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,92,0,.45);">Send Message →</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ formSubmitted }}" hint-placeholder-val="{{ false }}">
+        <div style="background: #FFF4E0; border: 2px solid #FF9500; border-radius: 22px; padding: 48px; text-align: center;">
+          <div style="font-size: 60px; margin-bottom: 18px;">🌟</div>
+          <div style="font-size: 26px; font-weight: 900; color: #7A3200; margin-bottom: 10px;">Message sent!</div>
+          <div style="font-size: 17px; color: #3A7A5A; line-height: 1.65;">Ayesha will be in touch within 24 hours. Thank you for considering Sunkiss Academy!</div>
+        </div>
+      </sc-if>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="contact-sidebar" style="flex: 0 0 280px; display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: #FAFAF8; border-radius: 20px; padding: 24px; border: 1.5px solid #E8E8E0;">
+        <div style="font-size: 16px; font-weight: 900; color: #111; margin-bottom: 18px;">Contact Info</div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <span style="width: 38px; height: 38px; background: #FFF4E0; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">📞</span>
+            <div><div style="font-size: 13px; color: #999; font-weight: 700; margin-bottom: 3px;">Phone</div><a href="tel:+12063345645" style="font-size: 16px; font-weight: 800; color: #FF8800; text-decoration: none;">(206) 334-5645</a></div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <span style="width: 38px; height: 38px; background: #FFF6E0; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">✉️</span>
+            <div><div style="font-size: 13px; color: #999; font-weight: 700; margin-bottom: 3px;">Email</div><a href="mailto:sunkissacademy@gmail.com" style="font-size: 13px; font-weight: 700; color: #FF8800; text-decoration: none; word-break: break-all;">sunkissacademy@gmail.com</a></div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <span style="width: 38px; height: 38px; background: #FFF2E8; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">📍</span>
+            <div><div style="font-size: 13px; color: #999; font-weight: 700; margin-bottom: 3px;">Address</div><div style="font-size: 14px; font-weight: 700; color: #333; line-height: 1.5;">2208 133rd St SW<br/>Lynnwood, WA 98087</div></div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <span style="width: 38px; height: 38px; background: #FFF4E0; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">🕐</span>
+            <div><div style="font-size: 13px; color: #999; font-weight: 700; margin-bottom: 3px;">Hours</div><div style="font-size: 14px; font-weight: 700; color: #333; line-height: 1.5;">Mon - Fri<br/>8:00am - 5:00pm</div></div>
+          </div>
+        </div>
+      </div>
+      <a href="https://wa.me/12063345645" target="_blank" style="background: #FF8800; border-radius: 20px; padding: 24px; text-align: center; color: #fff; text-decoration: none; display: block;" style-hover="background: #3A84D8; transform: translateY(-2px);">
+        <div style="font-size: 36px; margin-bottom: 8px;">💬</div>
+        <div style="font-size: 16px; font-weight: 900; margin-bottom: 4px;">Chat on WhatsApp</div>
+        <div style="font-size: 14px; opacity: .75; margin-bottom: 14px;">Get a quick response</div>
+        <div style="background: #fff; color: #FF8800; padding: 10px 20px; border-radius: 10px; font-size: 15px; font-weight: 800; display: inline-block;">Open WhatsApp →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: #1A1A1A; padding: 56px 40px 36px; color: #AAA;">
+  <div class="footer-inner" style="max-width: 1100px; margin: 0 auto;">
+    <div class="footer-cols" style="display: flex; gap: 56px; margin-bottom: 48px; flex-wrap: wrap;">
+      <div style="flex: 2; min-width: 200px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+          <div style="width: 38px; height: 38px; background: linear-gradient(135deg, #FFAA00, #FF9000); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px;">☀</div>
+          <span style="font-size: 20px; font-weight: 900; color: #fff;">Sunkiss Academy</span>
+        </div>
+        <p style="font-size: 15px; line-height: 1.7; color: #666; max-width: 290px; margin: 0;">A warm, home-based childcare in Lynnwood, WA. Licensed, loving care for ages 0-5.</p>
+      </div>
+      <div>
+        <div style="font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 14px; letter-spacing: .5px;">QUICK LINKS</div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="#about" style="font-size: 15px; color: #666; text-decoration: none;" style-hover="color: #fff;">About Ayesha</a>
+          <a href="#programs" style="font-size: 15px; color: #666; text-decoration: none;" style-hover="color: #fff;">Programs</a>
+          <a href="#schedule" style="font-size: 15px; color: #666; text-decoration: none;" style-hover="color: #fff;">Daily Schedule</a>
+          <a href="#gallery" style="font-size: 15px; color: #666; text-decoration: none;" style-hover="color: #fff;">Gallery</a>
+          <a href="#faq" style="font-size: 15px; color: #666; text-decoration: none;" style-hover="color: #fff;">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 14px; letter-spacing: .5px;">CONTACT</div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-size: 15px; color: #666;">📞 (206) 334-5645</div>
+          <div style="font-size: 15px; color: #666;">✉️ sunkissacademy@gmail.com</div>
+          <div style="font-size: 15px; color: #666;">📍 2208 133rd St SW, Lynnwood</div>
+          <div style="font-size: 15px; color: #666;">🕐 Mon–Fri: 6:00am – 6:00pm</div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid #2A2A2A; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+      <div style="font-size: 13px; color: #444;">© 2026 Sunkiss Academy</div>
+      <div style="font-size: 13px; color: #444;">Made with ❤️ in Lynnwood, WA</div>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1280 }
+}">
+class Component extends DCLogic {
+  state = { openFaq: null, navScrolled: false, formSubmitted: false, revIndex: 0, formSending: false };
+
+  REV_CARDS = 6;
+  get REV_VISIBLE() { return window.innerWidth < 768 ? 1 : 3; }
+
+  faqData = [
+    {
+      q: "What are your hours and rates?",
+      a: "We're open Monday - Friday, 8:00am - 5:00pm. For current rates and availability, please reach out through our contact form or give us a call - we'd love to chat!"
+    },
+    {
+      q: "What ages do you accept?",
+      a: "We welcome children from birth to 5 years old, with dedicated programs for infants, toddlers, and preschoolers."
+    },
+    {
+      q: "How do I enroll my child?",
+      a: "Simply fill out the contact form or give us a call! We'll schedule a visit, answer all your questions, and walk you through the enrollment process."
+    },
+    {
+      q: "Do you accept subsidized childcare (WCCC)?",
+      a: "Yes! We work with families enrolled in Washington's Working Connections Child Care subsidy program. Contact us to learn more about how to apply."
+    },
+    {
+      q: "Do you speak Hindi or Urdu?",
+      a: "Ayesha speaks both Hindi and Urdu fluently. We warmly welcome multilingual families and families from all cultural backgrounds -everyone belongs here."
+    },
+    {
+      q: "What is your sick child policy?",
+      a: "Children with fever, vomiting, diarrhea, or contagious illness should stay home to protect everyone. We follow Washington State childcare health guidelines to keep all children safe."
+    }
+  ];
+
+  componentDidMount() {
+    // Initialize EmailJS
+    if (window.emailjs) {
+      window.emailjs.init('lNNAmy_lo_sFo4_VD');
+    }
+
+    this._onScroll = () => {
+      const scrolled = window.scrollY > 50;
+      if (scrolled !== this.state.navScrolled) {
+        this.setState({ navScrolled: scrolled });
+      }
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('vis');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
+    this._obs = obs;
+
+    // Drag/swipe on reviews track
+    const track = document.getElementById('reviews-track');
+    if (track) {
+      let startX = 0, dragging = false;
+      const onStart = (x) => { startX = x; dragging = true; };
+      const onEnd = (x) => {
+        if (!dragging) return;
+        dragging = false;
+        const diff = startX - x;
+        if (Math.abs(diff) < 40) return;
+        const maxIndex = this.REV_CARDS - this.REV_VISIBLE;
+        this.setState(s => ({
+          revIndex: diff > 0
+            ? Math.min(s.revIndex + 1, maxIndex)
+            : Math.max(s.revIndex - 1, 0)
+        }));
+      };
+      track.addEventListener('mousedown', e => onStart(e.clientX));
+      window.addEventListener('mouseup', e => onEnd(e.clientX));
+      track.addEventListener('touchstart', e => onStart(e.touches[0].clientX), { passive: true });
+      track.addEventListener('touchend', e => onEnd(e.changedTouches[0].clientX), { passive: true });
+    }
+
+    // Re-render on resize so slider recalculates visible count + card width
+    this._onResize = () => {
+      const maxIndex = this.REV_CARDS - this.REV_VISIBLE;
+      this.setState(s => ({ revIndex: Math.min(s.revIndex, maxIndex) }));
+    };
+    window.addEventListener('resize', this._onResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onResize);
+    if (this._obs) this._obs.disconnect();
+  }
+
+  renderVals() {
+    const { openFaq, navScrolled, formSubmitted, revIndex } = this.state;
+    const maxIndex = this.REV_CARDS - this.REV_VISIBLE;
+    const gap = 24;
+    const cardEl = document.querySelector('.review-card');
+    const cardW = cardEl ? cardEl.offsetWidth : (window.innerWidth < 768 ? window.innerWidth - 64 : 360);
+    const btnBase = {
+      position: 'absolute', top: '50%', transform: 'translateY(-50%)',
+      width: '44px', height: '44px', borderRadius: '50%', border: 'none',
+      cursor: 'pointer', fontSize: '18px', fontWeight: '900',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      transition: 'all 0.2s', zIndex: 3,
+    };
+    return {
+      revTrackStyle: {
+        display: 'flex', gap: gap + 'px',
+        transition: 'transform 0.45s cubic-bezier(.25,.46,.45,.94)',
+        transform: `translateX(calc(-${revIndex} * ${cardW + gap}px))`,
+        cursor: 'grab',
+        userSelect: 'none',
+      },
+      revPrevStyle: {
+        ...btnBase, left: '-8px',
+        background: revIndex === 0 ? 'rgba(255,255,255,.1)' : 'rgba(255,255,255,.18)',
+        color: revIndex === 0 ? 'rgba(255,255,255,.3)' : '#fff',
+        pointerEvents: revIndex === 0 ? 'none' : 'auto',
+      },
+      revNextStyle: {
+        ...btnBase, right: '-8px',
+        background: revIndex >= maxIndex ? 'rgba(255,255,255,.1)' : '#FF8800',
+        color: revIndex >= maxIndex ? 'rgba(255,255,255,.3)' : '#fff',
+        pointerEvents: revIndex >= maxIndex ? 'none' : 'auto',
+        boxShadow: revIndex >= maxIndex ? 'none' : '0 4px 16px rgba(255,136,0,.4)',
+      },
+      revPrev: () => this.setState(s => ({ revIndex: Math.max(s.revIndex - 1, 0) })),
+      revNext: () => this.setState(s => ({ revIndex: Math.min(s.revIndex + 1, maxIndex) })),
+      revDots: Array.from({ length: maxIndex + 1 }, (_, i) => ({
+        go: () => this.setState({ revIndex: i }),
+        style: {
+          width: i === revIndex ? '24px' : '8px', height: '8px',
+          borderRadius: '100px', border: 'none', cursor: 'pointer', padding: 0,
+          background: i === revIndex ? '#FF8800' : 'rgba(255,255,255,.25)',
+          transition: 'all 0.3s',
+        },
+      })),
+      navStyle: {
+        position: 'sticky',
+        top: 0,
+        zIndex: 100,
+        background: navScrolled ? 'rgba(250,250,248,.97)' : 'rgba(250,250,248,.82)',
+        backdropFilter: 'blur(14px)',
+        WebkitBackdropFilter: 'blur(14px)',
+        borderBottom: navScrolled ? '1px solid rgba(0,0,0,.08)' : '1px solid rgba(0,0,0,.04)',
+        boxShadow: navScrolled ? '0 2px 24px rgba(0,0,0,.07)' : 'none',
+        transition: 'all 0.3s ease',
+      },
+      faqs: this.faqData.map((f, i) => ({
+        q: f.q,
+        a: f.a,
+        open: openFaq === i,
+        icon: openFaq === i ? '-' : '+',
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? null : i })),
+      })),
+      formSubmitted,
+      formNotSubmitted: !formSubmitted,
+      handleSubmit: async () => {
+        const parentName = document.getElementById('parent_name')?.value || '';
+        const parentEmail = document.getElementById('parent_email')?.value || '';
+        const childAge = document.getElementById('child_age')?.value || '';
+        const message = document.getElementById('message')?.value || '';
+
+        console.log('Form data:', { parentName, parentEmail, childAge, message });
+
+        if (!parentName || !parentEmail) {
+          alert('Please fill in your name and email');
+          return;
+        }
+
+        this.setState({ formSending: true });
+
+        try {
+          if (!window.emailjs) {
+            throw new Error('EmailJS not loaded');
+          }
+          const result = await window.emailjs.send('service_o4b4wq1', 'template_514od76', {
+            parent_name: parentName,
+            parent_email: parentEmail,
+            child_age: childAge,
+            message: message,
+          });
+          console.log('Email sent successfully:', result);
+          this.setState({ formSubmitted: true, formSending: false });
+        } catch (err) {
+          console.error('Email send error:', err.text || err.message || err);
+          alert('Error: ' + (err.text || err.message || 'Unknown error'));
+          this.setState({ formSending: false });
+        }
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
