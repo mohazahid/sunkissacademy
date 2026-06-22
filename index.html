@@ -53,7 +53,6 @@
 
 <helmet>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/build/index.min.js"></script>
   <style>
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -652,8 +651,18 @@ class Component extends DCLogic {
   ];
 
   componentDidMount() {
-    // Initialize EmailJS
-    if (window.emailjs) {
+    // Load EmailJS dynamically
+    if (!window.emailjs) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/build/index.min.js';
+      script.onload = () => {
+        if (window.emailjs) {
+          window.emailjs.init('lNNAmy_lo_sFo4_VD');
+          console.log('EmailJS loaded');
+        }
+      };
+      document.head.appendChild(script);
+    } else {
       window.emailjs.init('lNNAmy_lo_sFo4_VD');
     }
 
