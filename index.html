@@ -565,12 +565,6 @@
           </div>
         </div>
       </div>
-      <a href="https://wa.me/12063345645" target="_blank" style="background: #FF8800; border-radius: 20px; padding: 24px; text-align: center; color: #fff; text-decoration: none; display: block;" style-hover="background: #3A84D8; transform: translateY(-2px);">
-        <div style="font-size: 36px; margin-bottom: 8px;">💬</div>
-        <div style="font-size: 16px; font-weight: 900; margin-bottom: 4px;">Chat on WhatsApp</div>
-        <div style="font-size: 14px; opacity: .75; margin-bottom: 14px;">Get a quick response</div>
-        <div style="background: #fff; color: #FF8800; padding: 10px 20px; border-radius: 10px; font-size: 15px; font-weight: 800; display: inline-block;">Open WhatsApp →</div>
-      </a>
     </div>
   </div>
 </section>
@@ -652,18 +646,27 @@ class Component extends DCLogic {
 
   componentDidMount() {
     // Load EmailJS dynamically
+    console.log('componentDidMount: checking emailjs', typeof window.emailjs);
     if (!window.emailjs) {
       const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/build/index.min.js';
+      script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+      script.type = 'text/javascript';
+      script.async = true;
       script.onload = () => {
+        console.log('Script loaded, emailjs:', typeof window.emailjs);
         if (window.emailjs) {
           window.emailjs.init('lNNAmy_lo_sFo4_VD');
-          console.log('EmailJS loaded');
+          console.log('EmailJS initialized');
         }
       };
+      script.onerror = () => {
+        console.error('Failed to load EmailJS script');
+      };
+      console.log('Adding script to head');
       document.head.appendChild(script);
     } else {
       window.emailjs.init('lNNAmy_lo_sFo4_VD');
+      console.log('EmailJS already loaded');
     }
 
     this._onScroll = () => {
@@ -804,9 +807,17 @@ class Component extends DCLogic {
         this.setState({ formSending: true });
 
         try {
-          if (!window.emailjs) {
-            throw new Error('EmailJS not loaded');
+          // Wait for EmailJS to load (up to 5 seconds)
+          let attempts = 0;
+          while (!window.emailjs && attempts < 50) {
+            await new Promise(r => setTimeout(r, 100));
+            attempts++;
           }
+
+          if (!window.emailjs) {
+            throw new Error('EmailJS failed to load');
+          }
+
           const result = await window.emailjs.send('service_o4b4wq1', 'template_514od76', {
             parent_name: parentName,
             parent_email: parentEmail,
@@ -827,3 +838,4 @@ class Component extends DCLogic {
 </script>
 </body>
 </html>
+
