@@ -393,7 +393,7 @@
         <div style="font-size: 14px; color: #777;">Quiet time for all ages</div>
       </div>
       <div style="background: #FFF2E8; border-radius: 16px; padding: 20px 16px; border-bottom: 4px solid #FF5C00;">
-        <div style="font-size: 13px; font-weight: 800; color: #7A2800; margin-bottom: 6px;">2:30 pm</div>
+        <div style="font-size: 13px; font-weight: 800; color: #7A2800; margin-bottom: 6px;">3:30 pm</div>
         <div style="font-size: 18px; font-weight: 900; color: #111; margin-bottom: 4px;">Outdoor Play</div>
         <div style="font-size: 14px; color: #777;">Fresh air &amp; movement</div>
       </div>
@@ -545,6 +545,34 @@
     <sc-for list="{{ revDots }}" as="dot">
       <button onclick="{{ dot.go }}" style="{{ dot.style }}"></button>
     </sc-for>
+  </div>
+</section>
+
+<!-- APPROACH TO CHILDCARE -->
+<section style="background: #FFF9EE; padding: 96px 40px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 48px;" data-animate>
+      <div style="display: inline-block; background: #FFE8D0; color: #B04800; font-size: 13px; font-weight: 800; padding: 5px 16px; border-radius: 100px; letter-spacing: .8px; margin-bottom: 14px;">OUR PHILOSOPHY</div>
+      <h2 style="font-size: 42px; font-weight: 900; color: #111; margin: 0 0 12px; line-height: 1.1;">Our approach to childcare</h2>
+      <p style="font-size: 17px; color: #666; max-width: 520px; margin: 0 auto; line-height: 1.65;">We believe early childhood is the foundation for lifelong learning. Our childcare approach prioritizes love, safety, and meaningful development.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px;" data-animate data-d="2">
+      <div style="background: #fff; border-radius: 20px; padding: 32px 24px; border-left: 5px solid #FF8800; box-shadow: 0 4px 16px rgba(255,136,0,.1);">
+        <div style="font-size: 40px; margin-bottom: 12px;">❤️</div>
+        <h3 style="font-size: 20px; font-weight: 900; color: #111; margin: 0 0 8px;">Personalized Care</h3>
+        <p style="font-size: 15px; color: #555; line-height: 1.7; margin: 0;">With just 12 children max, we know each child's personality, needs, and learning style. Every child gets the individual attention and emotional connection they deserve.</p>
+      </div>
+      <div style="background: #fff; border-radius: 20px; padding: 32px 24px; border-left: 5px solid #FF5C00; box-shadow: 0 4px 16px rgba(255,92,0,.1);">
+        <div style="font-size: 40px; margin-bottom: 12px;">🎨</div>
+        <h3 style="font-size: 20px; font-weight: 900; color: #111; margin: 0 0 8px;">Play-Based Learning</h3>
+        <p style="font-size: 15px; color: #555; line-height: 1.7; margin: 0;">Learning happens through play, exploration, and curiosity. We create an environment where children discover, create, and grow at their own pace while building confidence and independence.</p>
+      </div>
+      <div style="background: #fff; border-radius: 20px; padding: 32px 24px; border-left: 5px solid #FFAA00; box-shadow: 0 4px 16px rgba(255,170,0,.1);">
+        <div style="font-size: 40px; margin-bottom: 12px;">🌱</div>
+        <h3 style="font-size: 20px; font-weight: 900; color: #111; margin: 0 0 8px;">Home-Like Environment</h3>
+        <p style="font-size: 15px; color: #555; line-height: 1.7; margin: 0;">A warm, family home setting allows children to relax and thrive. We maintain consistent routines, genuine relationships, and a caring atmosphere that feels like an extension of family.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -739,8 +767,14 @@ class Component extends DCLogic {
       script.onload = () => {
         console.log('Script loaded, emailjs:', typeof window.emailjs);
         if (window.emailjs) {
-          window.emailjs.init('lNNAmy_lo_sFo4_VD');
-          console.log('EmailJS initialized');
+          window.emailjs.init({
+            publicKey: 'lNNAmy_lo_sFo4_VD',
+            limitRate: {
+              id: 'sunkiss_enrollment_form',
+              throttle: 5000
+            }
+          });
+          console.log('EmailJS initialized with rate limiting');
         }
       };
       script.onerror = () => {
