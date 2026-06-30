@@ -18,19 +18,29 @@ Licensed home-based preschool in Lynnwood, WA offering bilingual childcare for a
 └── archive/               # Old code (git-ignored)
 ```
 
+## Deployment
+
+This site is deployed via **Vercel** (not GitHub Pages).
+
+To deploy:
+1. Edit `Sunkiss Academy.html`
+2. Run `npm run build` to generate the `build/` folder
+3. Run `npx vercel --prod` to deploy to production
+
+Vercel serves the `build/` folder as static files. The custom domain `sunkissacademy.com` is configured in the Vercel dashboard under the `fakermega` team.
+
 ## Available Scripts
 
-### `npm run deploy`
+### `npm run build`
 
-Builds and deploys to GitHub Pages. The build script:
-1. Reads `Sunkiss Academy.html`
-2. Copies all files to `build/` folder
-3. Deploys to `gh-pages` branch
-4. Site goes live at [sunkissacademy.com](https://sunkissacademy.com)
+Builds the site into the `build/` folder:
+- Reads `Sunkiss Academy.html`
+- Fixes image paths (`../src/img/` → `src/img/`)
+- Copies `index.html`, `support.js`, `CNAME`, and `src/img/` to `build/`
 
 ### `npm run local`
 
-Build and serve locally:
+Build and preview locally:
 ```bash
 npm run local
 ```
@@ -38,9 +48,7 @@ Open [http://localhost:3000](http://localhost:3000) to preview.
 
 ## Development
 
-Edit `Sunkiss Academy.html` to make changes to the site.
-
-Images should be placed in `src/img/`.
+Edit `Sunkiss Academy.html` to make changes to the site. Images go in `src/img/`.
 
 ## Archive
 
